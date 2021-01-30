@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Request Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <select class="form-control" name="symbol">
+                <option disabled selected value>Stock</option>
+                {% for symbol in symbols %}
+                <option value="{{ symbol }}">{{ symbol }}</option>
+                {% endfor %}
+            </select>
+            <input autocomplete="off" class="form-control" name="shares" placeholder="No. of shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}

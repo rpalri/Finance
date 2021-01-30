@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Request Quote
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>${{'%0.2f' % total | float }}</td>
+            </tr>
+        </tfoot>
+        <body>
+            {% for row in purch %}
+                {% if row[1] != "ADDED-CASH" %}
+                    {% if row[2] != 0 %}
+            <tr>
+
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>${{ row[3] }}</td>
+                <td>${{'%0.2f' % row[4] | float }}</td>
+            </tr>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>${{'%0.2f' % cash | float }}</td>
+            </tr>
+        </body>
+    </table>
+{% endblock %}
